@@ -1,0 +1,2 @@
+This is a Swift sample of [Spotify iOS SDK Tutorial](https://developer.spotify.com/technologies/spotify-ios-sdk/tutorial/).  
+To play a track, log in with a Spotify Premium account and specify the track available in your country.

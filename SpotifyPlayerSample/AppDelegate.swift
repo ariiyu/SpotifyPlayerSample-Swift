@@ -9,38 +9,68 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
-
+class AppDelegate: UIResponder, UIApplicationDelegate, SPTAudioStreamingDelegate {
+    
     var window: UIWindow?
-
-
+    
+    let kClientId = "YOUR_CLIENT_ID"
+    let kRedirectUrl = NSURL(string: "YOUR_REDIRECT_URL")
+    
+    var session: SPTSession?
+    var player: SPTAudioStreamingController?
+    
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        // set up Spotofy
+        SPTAuth.defaultInstance().clientID = kClientId
+        SPTAuth.defaultInstance().redirectURL = kRedirectUrl
+        SPTAuth.defaultInstance().requestedScopes = [SPTAuthStreamingScope] as [AnyObject]
+        let loginUrl = SPTAuth.defaultInstance().loginURL
+        application.openURL(loginUrl)
+        
         return true
     }
-
-    func applicationWillResignActive(application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    
+    // handle auth
+    func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
+        if SPTAuth.defaultInstance().canHandleURL(url) {
+            SPTAuth.defaultInstance().handleAuthCallbackWithTriggeredAuthURL(url, callback: { error, session in
+                if error != nil {
+                    print("*** Auth error: \(error)")
+                }                
+                // Call the -loginUsingSession: method to login SDK
+                self.loginUsingSession(session)
+            })
+            return true
+        }
+        
+        return false
     }
-
-    func applicationDidEnterBackground(application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+    func loginUsingSession(session: SPTSession) {
+        // Get the player Instance
+        player = SPTAudioStreamingController.sharedInstance()
+        if let player = player {
+            player.delegate = self
+            // start the player (will start a thread)
+            try! player.startWithClientId(kClientId)
+            // Login SDK before we can start playback
+            player.loginWithAccessToken(session.accessToken)
+        }
     }
-
-    func applicationWillEnterForeground(application: UIApplication) {
-        // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    // MARK: SPTAudioStreamingDelegate.
+    
+    func audioStreamingDidLogin(audioStreaming: SPTAudioStreamingController!) {
+        let urlStr = "spotify:track:6ZSvhLZRJredt15aJiBQqv" // track available in Japan
+        player!.playSpotifyURI(urlStr, startingWithIndex: 0, startingWithPosition: 0, callback: { error in
+            if error != nil {
+                print("*** failed to play: \(error)")
+                return
+            } else {
+                print("play")
+            }
+        })
     }
-
-    func applicationDidBecomeActive(application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-    }
-
-    func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-    }
-
-
 }
 
