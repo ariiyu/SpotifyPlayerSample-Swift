@@ -12,6 +12,7 @@
 		42DC43481D963F10008E8C98 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42DC43461D963F10008E8C98 /* Main.storyboard */; };
 		42DC434A1D963F10008E8C98 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 42DC43491D963F10008E8C98 /* Assets.xcassets */; };
 		42DC434D1D963F10008E8C98 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 42DC434B1D963F10008E8C98 /* LaunchScreen.storyboard */; };
+		42DC43551D963F3C008E8C98 /* Spotify.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 42DC43541D963F3C008E8C98 /* Spotify.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		42DC43491D963F10008E8C98 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		42DC434C1D963F10008E8C98 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		42DC434E1D963F10008E8C98 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		42DC43541D963F3C008E8C98 /* Spotify.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Spotify.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42DC43551D963F3C008E8C98 /* Spotify.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +63,7 @@
 				42DC43491D963F10008E8C98 /* Assets.xcassets */,
 				42DC434B1D963F10008E8C98 /* LaunchScreen.storyboard */,
 				42DC434E1D963F10008E8C98 /* Info.plist */,
+				42DC43541D963F3C008E8C98 /* Spotify.framework */,
 			);
 			path = SpotifyPlayerSample;
 			sourceTree = "<group>";
@@ -249,6 +253,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SpotifyPlayerSample",
+				);
 				INFOPLIST_FILE = SpotifyPlayerSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ariiyu.SpotifyPlayerSample;
@@ -260,6 +268,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/SpotifyPlayerSample",
+				);
 				INFOPLIST_FILE = SpotifyPlayerSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ariiyu.SpotifyPlayerSample;
