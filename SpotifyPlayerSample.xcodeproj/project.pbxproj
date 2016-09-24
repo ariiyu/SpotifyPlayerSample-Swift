@@ -259,7 +259,7 @@
 				);
 				INFOPLIST_FILE = SpotifyPlayerSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ariiyu.SpotifyPlayerSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ariiyu.SpotifyPlayerSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -274,7 +274,7 @@
 				);
 				INFOPLIST_FILE = SpotifyPlayerSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = ariiyu.SpotifyPlayerSample;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ariiyu.SpotifyPlayerSample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -298,6 +298,7 @@
 				42DC43531D963F10008E8C98 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
