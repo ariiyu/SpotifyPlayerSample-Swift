@@ -1,0 +1,12 @@
+*.xcodeproj/*
+!*.xcodeproj/project.pbxproj
+*.xcworkspace
+.DS_Store
+*.mobileprovision
+*.ipa
+*.dSYM.zip
+Pods/*
+Carthage/Build
+fastlane/report.xml
+fastlane/Appfile
+fastlane/README.md
